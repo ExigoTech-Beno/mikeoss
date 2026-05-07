@@ -1,0 +1,29 @@
+# Azure AI Foundry Hosted Agent deployment definition
+# Deploy with: azd up (from this directory)
+name: mike-legal-agent
+description: Mike Legal AI — document analysis and chat agent for Australian law firms
+
+# Container image (pushed to ACR before deployment)
+image: ${ACR_LOGIN_SERVER}/mike-legal-agent:latest
+
+# Sandbox resource allocation
+resources:
+  cpu: 1.0
+  memory: 2Gi
+
+# Protocols exposed by this agent
+protocols:
+  - responses     # Conversational chat (OpenAI-compatible) — used by frontend + Teams
+  - invocations   # Batch tabular extraction — used by tabular review feature
+
+# Environment variables injected at runtime
+# Secrets should be stored in Key Vault and referenced via connections
+environment:
+  FOUNDRY_PROJECT_ENDPOINT: ${FOUNDRY_PROJECT_ENDPOINT}
+  FOUNDRY_MODEL_DEPLOYMENT: gpt-4o
+  POSTGRES_DSN: ${POSTGRES_DSN}
+  BLOB_CONNECTION_STRING: ${BLOB_CONNECTION_STRING}
+  BLOB_CONTAINER: mike
+  ENTRA_TENANT_ID: ${ENTRA_TENANT_ID}
+  ENTRA_CLIENT_ID: ${ENTRA_CLIENT_ID}
+  FRONTEND_URL: ${FRONTEND_URL}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azure Resource Approval Request — Mike Legal AI</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; color: #222; }
+  .wrapper { max-width: 780px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 16px rgba(0,0,0,0.09); overflow: hidden; }
+  .header { background: #0078d4; color: #fff; padding: 32px 40px 24px; }
+  .header h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; }
+  .header p { margin-top: 6px; font-size: 13px; opacity: 0.85; }
+  .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 2px 12px; font-size: 11px; font-weight: 600; margin-top: 10px; letter-spacing: 0.5px; }
+  .body { padding: 36px 40px; }
+  h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #0078d4; margin-bottom: 12px; margin-top: 28px; }
+  h2:first-child { margin-top: 0; }
+  p { font-size: 14px; line-height: 1.7; color: #444; }
+  .context-box { background: #f0f6ff; border-left: 4px solid #0078d4; padding: 14px 18px; border-radius: 4px; font-size: 14px; color: #333; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+  th { background: #f7f9fc; text-align: left; padding: 10px 14px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #666; border-bottom: 2px solid #e5e9f0; }
+  td { padding: 11px 14px; border-bottom: 1px solid #eef0f4; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+  .tag-new { background: #e6f4ff; color: #0078d4; }
+  .tag-change { background: #fff4e0; color: #b8670a; }
+  .cost-total { font-weight: 700; font-size: 15px; color: #0078d4; }
+  .note { font-size: 12px; color: #888; margin-top: 6px; }
+  .approval-box { border: 2px dashed #0078d4; border-radius: 8px; padding: 24px; margin-top: 32px; background: #f8fbff; }
+  .approval-box h3 { font-size: 14px; font-weight: 700; color: #0078d4; margin-bottom: 14px; }
+  .sig-row { display: flex; gap: 40px; margin-top: 20px; }
+  .sig-field { flex: 1; }
+  .sig-field label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; display: block; margin-bottom: 6px; }
+  .sig-line { border-bottom: 1.5px solid #ccc; padding-bottom: 20px; }
+  .footer { background: #f7f9fc; border-top: 1px solid #e5e9f0; padding: 16px 40px; font-size: 12px; color: #999; display: flex; justify-content: space-between; align-items: center; }
+  ul { padding-left: 18px; font-size: 14px; color: #444; line-height: 2; }
+  .rg-chip { display: inline-block; background: #eef4ff; color: #0063b1; font-size: 11px; font-weight: 600; padding: 2px 10px; border-radius: 4px; font-family: monospace; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <h1>Azure Resource Provisioning — Approval Request</h1>
+    <p>Project: <strong>Mike Legal AI — Full Azure Stack Migration</strong></p>
+    <span class="badge">PENDING APPROVAL</span>
+  </div>
+  <div class="body">
+
+    <h2>Context</h2>
+    <div class="context-box">
+      Mike is an open-source AI-powered legal document assistant (Next.js frontend + Express backend).
+      Currently, it requires Cloudflare R2 and Supabase (a third-party SaaS) for storage and identity.
+      This request is to migrate entirely onto our existing Azure infrastructure — eliminating third-party
+      dependencies and keeping all data and identity within our Microsoft tenant.
+    </div>
+
+    <h2>Resources Requested</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>Type / SKU</th>
+          <th>Purpose</th>
+          <th>Est. Monthly Cost (AUD)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>mikestorage</strong><br><span class="rg-chip">rg-mike</span></td>
+          <td>Azure Blob Storage<br>Standard LRS, Hot tier</td>
+          <td>Legal document storage (PDFs, DOCX). Replaces Cloudflare R2.</td>
+          <td>~–5 AUD/month<br><span class="note">First 5 GB free; ~.026/GB thereafter</span></td>
+          <td><span class="tag tag-new">New</span></td>
+        </tr>
+        <tr>
+          <td><strong>mike-postgres</strong><br><span class="rg-chip">rg-mike</span></td>
+          <td>Azure Database for PostgreSQL<br>Flexible Server, Burstable B1ms<br>32 GB storage</td>
+          <td>Application database — users, documents, chats, projects. Replaces Supabase Postgres.</td>
+          <td>~–35 AUD/month</td>
+          <td><span class="tag tag-new">New</span></td>
+        </tr>
+        <tr>
+          <td><strong>Mike Legal AI</strong><br><span class="note">Entra External ID</span></td>
+          <td>Microsoft Entra External ID<br>(Free tier: 50,000 MAU)</td>
+          <td>User authentication — email + password. Replaces Supabase Auth. Issues Azure AD JWTs.</td>
+          <td> AUD<br><span class="note">Free up to 50,000 monthly active users</span></td>
+          <td><span class="tag tag-new">New</span></td>
+        </tr>
+        <tr>
+          <td><strong>Resource Group</strong><br><span class="rg-chip">rg-mike</span></td>
+          <td>Resource Group<br>Australia East</td>
+          <td>Logical container for all Mike resources in the ET-SPONSORSHIP-24 subscription.</td>
+          <td></td>
+          <td><span class="tag tag-new">New</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Subscription</h2>
+    <table>
+      <tbody>
+        <tr><td style="width:180px;color:#666;font-weight:600;">Subscription</td><td>ET-SPONSORSHIP-24–Infrastructure-6000</td></tr>
+        <tr><td style="color:#666;font-weight:600;">Subscription ID</td><td><span class="rg-chip">f2a91b0a-cbb4-4c5c-bab4-b0cce02b7ae5</span></td></tr>
+        <tr><td style="color:#666;font-weight:600;">Region</td><td>Australia East</td></tr>
+        <tr><td style="color:#666;font-weight:600;">Resource Group</td><td>rg-mike (to be created)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Estimated Total Cost</h2>
+    <p class="cost-total">~–40 AUD / month</p>
+    <p class="note">Primarily the PostgreSQL Flexible Server. Storage and Auth are negligible at early usage volumes. All resources can be stopped/deleted if the project is discontinued.</p>
+
+    <h2>What Happens After Approval</h2>
+    <ul>
+      <li>Resource group <code>rg-mike</code> is created in Australia East</li>
+      <li>Azure Blob Storage account is provisioned</li>
+      <li>PostgreSQL Flexible Server is provisioned and schema is applied</li>
+      <li>Entra External ID tenant is configured with email+password user flow</li>
+      <li>Application code is updated to use Azure services (no third-party SaaS)</li>
+    </ul>
+
+    <h2>Requester</h2>
+    <table>
+      <tbody>
+        <tr><td style="width:180px;color:#666;font-weight:600;">Requested by</td><td>Ben Opit</td></tr>
+        <tr><td style="color:#666;font-weight:600;">Date</td><td>2 May 2026</td></tr>
+        <tr><td style="color:#666;font-weight:600;">Project</td><td>Mike Legal AI — MikeOSS</td></tr>
+      </tbody>
+    </table>
+
+    <div class="approval-box">
+      <h3>✍ Approval</h3>
+      <p style="font-size:13px;color:#555;">Please review and sign below to authorise the provisioning of the resources listed above.</p>
+      <div class="sig-row">
+        <div class="sig-field">
+          <label>Approved by</label>
+          <div class="sig-line"></div>
+          <label style="margin-top:6px;">Name: Alpesh _______________</label>
+        </div>
+        <div class="sig-field">
+          <label>Signature</label>
+          <div class="sig-line"></div>
+        </div>
+        <div class="sig-field">
+          <label>Date</label>
+          <div class="sig-line"></div>
+        </div>
+      </div>
+      <div style="margin-top:18px;">
+        <label style="font-size:12px;color:#666;display:block;margin-bottom:8px;">Decision</label>
+        <label style="font-size:14px;margin-right:24px;">☐ &nbsp;Approved</label>
+        <label style="font-size:14px;margin-right:24px;">☐ &nbsp;Approved with changes</label>
+        <label style="font-size:14px;">☐ &nbsp;Declined</label>
+      </div>
+      <div style="margin-top:14px;">
+        <label style="font-size:12px;color:#666;display:block;margin-bottom:4px;">Comments</label>
+        <div style="border: 1px solid #ccc; border-radius:4px; height: 60px; background: #fff;"></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">
+    <span>Mike Legal AI · Azure Migration · ET-SPONSORSHIP-24</span>
+    <span>Confidential — Internal Use Only</span>
+  </div>
+</div>
+</body>
+</html>
